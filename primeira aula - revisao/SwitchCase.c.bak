@@ -5,9 +5,8 @@
 int main()
 {
     int a ;
-     
-    do{
-    printf ("Digite um valor de 1 a 5, digite qualquer outra coisa para sair: ");
+    
+    printf ("Digite um valor de 1 a 5: ");
   scanf("%d", &a);
     
     switch ( a )
@@ -31,13 +30,11 @@ int main()
     case 5 :
     printf ("Cinco\n");
     break;
-    
+   
     default :
-    printf ("Sair\n");
-    return 0;
-    break;
-  }}
-  while(a < 6 || a < 1);
+    printf ("Valor invalido!\n");
+  }
   
+  return 0;
 }
 

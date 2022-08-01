@@ -5,7 +5,7 @@
 int main()
 {
     int a ;
-    
+     
     printf ("Digite um valor de 1 a 5: ");
   scanf("%d", &a);
     
