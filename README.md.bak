@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://i.imgur.com/p40chf4.png" width="600"><img src="https://www.ifsp.edu.br/images/Marca_IFSP_2015031.png" width="145">
+<img src="https://i.imgur.com/p40chf4.png" height="200" width="600"><img src="https://www.ifsp.edu.br/images/Marca_IFSP_2015031.png" height="200" width="145">
 </p><br><br>
 <p align="center">
 ## Matéria de Programação orientada a objeto do curso de ADS do instituto federal de ciencia e tecnologia do estado de São Paulo.
