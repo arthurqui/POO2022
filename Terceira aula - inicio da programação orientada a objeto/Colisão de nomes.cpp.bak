@@ -32,4 +32,3 @@ int main()
     cout << s << x;
     
     return 0;
-}
