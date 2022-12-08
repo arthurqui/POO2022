@@ -1,4 +1,9 @@
+/*
 
+Projeto vai ser um "jogo" de rpg onde os personagens serão objetos, seus atributos serão vida e dano, cada classe (Tanker e lutador) será 
+uma herança, itens que serão agregações e a mudança de valores serão o polimorfismo.
+
+*/
 #include <iostream>
 #include <vector>
 
