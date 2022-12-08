@@ -1,19 +1,3 @@
-/*
-Fa√Ωa um programa que cadastre dados
-de clientes e contas destes clientes.
-Um Cliente pode ter:
-* cpf
-* nome
-* conta
-
-Uma Conta pode ter:
-* n√Ωmero
-* saldo
-
-Crie m√Ωtodos para manipular esses atributos.
-*/
-
-
 
 #include <iostream>
 #include <vector>
@@ -51,9 +35,9 @@ public:
 class ContaCorrente: public Conta{
 	//Sobrescrita de m√Ωtodo
 
-public:	
+public:
 	ContaCorrente(){
-		cout<<"Criando uma conta corrente, no endere√Ωo "<<this<<endl;
+		cout<<"Criando uma conta corrente, no endereÁo "<<this<<endl;
 	}
 	
 	float calculaCusto(){
@@ -65,7 +49,7 @@ class ContaPoupanca: public Conta{
 	
 public:
 	ContaPoupanca(){
-		cout<<"Criando uma conta poupan√Ωa, no endere√Ωo "<<this<<endl;
+		cout<<"Criando uma conta poupanÁa, no endereÁo "<<this<<endl;
 	}
 	float calculaCusto(){
 		return this->saldo * 10;
@@ -113,7 +97,7 @@ public:
 
 class GerenciaDeContas{
 /*	Tem um atributo custos, que acumula os custos
-	de manuten√Ω√Ωo de todas as contas do programa.
+	de manutenÁ„o de todas as contas do programa.
 */
 private:
 	float custos;
@@ -133,7 +117,6 @@ public:
 	}
 };
 
-//alteraÁ„o primeiro push no git ------------------------------------------------apagar
 
 void apresentaCadastro(vector<Cliente> cadastroDeClientes, vector<Conta> cadastroDeContas){
 	
@@ -145,7 +128,7 @@ void apresentaCadastro(vector<Cliente> cadastroDeClientes, vector<Conta> cadastr
 	}
 	
 	for(int j = 0; j < cadastroDeContas.size(); j++){
-	    cout<<"N√∫mero da Conta: "<<cadastroDeContas[j].getNumero()<<endl;
+	    cout<<"N˙mero da Conta: "<<cadastroDeContas[j].getNumero()<<endl;
 		cout<<"Saldo da Conta: "<<cadastroDeContas[j].getSaldo()<<endl;
 		cout<<endl;
 	    }
@@ -164,10 +147,10 @@ int main(){
 		for(int i = 0; i < qtdClientes; i++){
 			string nome, cpf;
 			
-			cout << "Entre com o nome do "<< i + 1 << "¬∞ cliente: "<< endl;
+			cout << "Entre com o nome do "<< i + 1 << "∞ cliente: "<< endl;
 			cin >> nome;	
 			
-			cout << "Entre com o cpf do "<< i + 1 <<"¬∞ cliente: "<< endl;
+			cout << "Entre com o cpf do "<< i + 1 <<"∞ cliente: "<< endl;
 			cin >> cpf;
 			
 			Cliente cliente;
@@ -187,10 +170,10 @@ int main(){
 				cin >> num;
 				
 				if (num == 1) {
-    				cout << "Entre com o numero da "<< j + 1 <<"¬™ conta do "<< i + 1 <<"¬∞ cliente" << endl;
+    				cout << "Entre com o numero da "<< j + 1 <<"™ conta do "<< i + 1 <<"∞ cliente" << endl;
     				cin >> numero;	
     			
-    				cout << "Entre com o saldo da "<< j + 1 <<"¬™ conta do "<< i + 1 <<"¬∞ cliente" << endl;
+    				cout << "Entre com o saldo da "<< j + 1 <<"™ conta do "<< i + 1 <<"∞ cliente" << endl;
     				cin >> saldo;
     					
     				ContaCorrente contaCorrente;
@@ -201,10 +184,10 @@ int main(){
     			}
     				
 				else {
-    				cout << "Entre com o numero da "<< j + 1 <<"¬™ conta do "<< i + 1 <<"¬∞ cliente" << endl;
+    				cout << "Entre com o numero da "<< j + 1 <<"™ conta do "<< i + 1 <<"∞ cliente" << endl;
     				cin >> numero;	
     			
-    				cout << "Entre com o saldo da "<< j + 1 <<"¬™ conta do "<< i + 1 <<"¬∞ cliente" << endl;
+    				cout << "Entre com o saldo da "<< j + 1 <<"™ conta do "<< i + 1 <<"∞ cliente" << endl;
     				cin >> saldo;
     					
     				ContaPoupanca contaPoupanca;
