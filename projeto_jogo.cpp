@@ -9,93 +9,104 @@ uma heranÁa, itens que ser„o agregaÁıes e a mudanÁa de valores ser„o o polimorfi
 
 using namespace std;
 
-class Conta {
+class Personagem {
 
 protected:
-	string numero;
-	float saldo;
-		
-public:
-	void setNumero(string numero){
-		this->numero = numero;
-	}
-	
-	void setSaldo(float saldo){
-		this->saldo = saldo;
-	}
-	
-	string getNumero(){
-		return this->numero;
-	}
-
-	float getSaldo(){
-		return this->saldo;
-	}
-	
-	virtual float calculaCusto(){
-		
-	}
-};
-
-class ContaCorrente: public Conta{
-	//Sobrescrita de m√Ωtodo
-
-public:
-	ContaCorrente(){
-		cout<<"Criando uma conta corrente, no endereÁo "<<this<<endl;
-	}
-	
-	float calculaCusto(){
-		return this->saldo * 0.05;
-	}
-};
-class ContaPoupanca: public Conta{
-	//Sobrescrita de m√Ωtodo
-	
-public:
-	ContaPoupanca(){
-		cout<<"Criando uma conta poupanÁa, no endereÁo "<<this<<endl;
-	}
-	float calculaCusto(){
-		return this->saldo * 10;
-	}	
-};
-
-
-
-
-class Cliente {
-
-private:
 	string nome;
-	string cpf;
-	Conta* conta;
+	float vida;
+	float dano;
 		
 public:
-	
 	void setNome(string nome){
 		this->nome = nome;
 	}
 	
-	void setCpf(string cpf){
-		this->cpf = cpf;
-	}
-	
-	string getNome(){
+	void getNome(){
 		return this->nome;
 	}
-
-	string getCpf(){
-		return this->cpf;
+	
+	void setVida(float vida){
+		this->vida = vida;
 	}
 	
-	void setConta(Conta* conta){
+	void getVida(){
+		return this->vida;
+	}
+	
+	void setDano(float dano){
+		this->dano = dano;
+	}
+
+	float getDano(){
+		return this->dano;
+	}
+	
+
+};
+
+class Tanker: public Personagem{
+	//Sobrescrita de m√Ωtodo
+
+public:
+	
+	float calculaDano(){
+		return this->dano * 0.8;
+	}
+	
+	float calculaVida(){
+		return this->vida * 1;
+	}
+};
+class Lutador: public Personagem{
+	//Sobrescrita de m√Ωtodo
+	
+public:
+
+	float calculaDano(){
+		return this->dano * 1;
+	}
+	
+	float calculaVida(){
+		return this->vida * 0.8;
+	}
+};
+
+
+
+
+class Monstro {
+
+private:
+	float vida;
+	float dano;
+	
+//  Conta* conta;
+
+public:
+	
+	void setVida(float vida){
+		this->vida = vida;
+	}
+	
+	void getVida(){
+		return this->vida;
+	}
+	
+	void setDano(float dano){
+		this->dano = dano;
+	}
+
+	float getDano(){
+		return this->dano;
+	}
+	
+/*	void setConta(Conta* conta){
 		this->conta = conta;
 	}
 	
 	Conta* getConta(){
 		return this->conta;
-	}
+	} */
 	
 };
 
