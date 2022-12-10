@@ -9,113 +9,106 @@ uma herança, itens que serão agregações e a mudança de valores serão o polimorfi
 
 using namespace std;
 
-class Personagem {
+class Atributo {
 
 protected:
-	string nome;
-	float vida;
-	float dano;
+	string nomeAtributo;
+	float valor;
 		
 public:
-	void setNome(string nome){
-		this->nome = nome;
+	void setNomeAtributo(string nomeAtributo){
+		this->nomeAtributo = nomeAtributo;
 	}
 	
-	void getNome(){
-		return this->nome;
+	void setValor(float valor){
+		this->valor = valor;
 	}
 	
-	void setVida(float vida){
-		this->vida = vida;
-	}
-	
-	void getVida(){
-		return this->vida;
-	}
-	
-	void setDano(float dano){
-		this->dano = dano;
+	string getNomeAtributo(){
+		return this->nomeAtributo;
 	}
 
-	float getDano(){
-		return this->dano;
+	float getValor(){
+		return this->valor;
 	}
 	
-
+	virtual float determinarValor(){
+	}	
 };
 
-class Tanker: public Personagem{
+class AtributoForca: public Atributo{
 	//Sobrescrita de mÃ½todo
 
 public:
-	
-	float calculaDano(){
-		return this->dano * 0.8;
+	AtributoForca(){
+		cout<<"Criando atributo forca para o personagem, no endereço "<<this<<endl;
 	}
 	
-	float calculaVida(){
-		return this->vida * 1;
+	float determinaValor(){
+		
 	}
 };
-class Lutador: public Personagem{
+class AtributoInteligencia: public Atributo{
 	//Sobrescrita de mÃ½todo
 	
 public:
-
-	float calculaDano(){
-		return this->dano * 1;
+	AtributoInteligencia(){
+		cout<<"Criando atributo inteligencia para o personagem, no endereço "<<this<<endl;
 	}
 	
-	float calculaVida(){
-		return this->vida * 0.8;
+	float determinaValor(){
+		
+	}
+};
+
+class AtributoVida: public Atributo{
+	//Sobrescrita de mÃ½todo
+	
+public:
+	AtributoVida(){
+		cout<<"Criando atributo inteligencia para o personagem, no endereço "<<this<<endl;
+	}
+	
+	float determinaValor(){
+		
 	}
 };
 
 
 
 
-class Monstro {
+class Campeao {
 
 private:
-	float vida;
-	float dano;
-	
-//  Conta* conta;
-
+	string nomeCampeao;
+	Atributo* atributo;
+		
 public:
 	
-	void setVida(float vida){
-		this->vida = vida;
+	void setNomeCampeao(string nomeCampeao){
+		this->nomeCampeao = nomeCampeao;
+	}
+		
+	string getNomeCampeao(){
+		return this->nomeCampeao;
 	}
 	
-	void getVida(){
-		return this->vida;
+	void setAtributo(Atributo* atributo){
+		this->atributo = atributo;
 	}
 	
-	void setDano(float dano){
-		this->dano = dano;
+	Atributo* getAtributo(){
+		return this->atributo;
 	}
-
-	float getDano(){
-		return this->dano;
-	}
-	
-/*	void setConta(Conta* conta){
-		this->conta = conta;
-	}
-	
-	Conta* getConta(){
-		return this->conta;
-	} */
 	
 };
 
 
-class GerenciaDeContas{
+/*class GerenciaDeContas{
 /*	Tem um atributo custos, que acumula os custos
 	de manutenção de todas as contas do programa.
 */
-private:
+/*private:
 	float custos;
 	
 public:
@@ -131,21 +124,19 @@ public:
 	float getCustos(){
 		return custos;
 	}
-};
+};*/
 
 
-void apresentaCadastro(vector<Cliente> cadastroDeClientes, vector<Conta> cadastroDeContas){
+void apresentaCadastro(vector<Campeao> cadastroDeCampeoes, vector<Atributo> cadastroDeAtributos){
 	
-	for(int i = 0; i < cadastroDeClientes.size(); i++){
-		cout<<"Nome: "<<cadastroDeClientes[i].getNome()<<endl;
-		cout<<"CPF: "<<cadastroDeClientes[i].getCpf()<<endl;
+	for(int i = 0; i < cadastroDeCampeoes.size(); i++){
+		cout<<"Nome do campeao: "<<cadastroDeCampeoes[i].getNomeCampeao()<<endl;
 		cout<<endl;
 		
 	}
 	
-	for(int j = 0; j < cadastroDeContas.size(); j++){
-	    cout<<"Número da Conta: "<<cadastroDeContas[j].getNumero()<<endl;
-		cout<<"Saldo da Conta: "<<cadastroDeContas[j].getSaldo()<<endl;
+	for(int j = 0; j < cadastroDeAtributos.size(); j++){
+	    cout<<"Valor do atributo: "<<cadastroDeAtributos[j].getValor()<<endl;
 		cout<<endl;
 	    }
 	
@@ -153,69 +144,57 @@ void apresentaCadastro(vector<Cliente> cadastroDeClientes, vector<Conta> cadastr
 
 int main(){
 
-	int qtdClientes, qtdContas;
-	vector<Cliente> cadastroDeClientes;
-	vector<Conta> cadastroDeContas;
+	int qtdCampeoes, qtdAtributos;
+	vector<Campeao> cadastroDeCampeoes;
+	vector<Atributo> cadastroDeAtributos;
 
-	cout << "Quantidade de clientes: "<< endl;
-	cin  >> qtdClientes;
+	cout << "Quantidade de Campeos: "<< endl;
+	cin  >> qtdCampeoes;
 
-		for(int i = 0; i < qtdClientes; i++){
-			string nome, cpf;
+		for(int i = 0; i < qtdCampeoes; i++){
+			string nomeCampeao;
 			
-			cout << "Entre com o nome do "<< i + 1 << "° cliente: "<< endl;
-			cin >> nome;	
+			cout << "Entre com o nome do campeao "<< i + 1 << endl;
+			cin >> nomeCampeao;	
 			
-			cout << "Entre com o cpf do "<< i + 1 <<"° cliente: "<< endl;
-			cin >> cpf;
 			
-			Cliente cliente;
-			cliente.setNome(nome);
-			cliente.setCpf(cpf);
+			Campeao campeao;
+			campeao.setNomeCampeao(nomeCampeao);
 			
-			cadastroDeClientes.push_back(cliente);	
+			cadastroDeCampeoes.push_back(campeao);	
 				
-			cout << "Quantidade de contas: " << endl;
-			cin  >> qtdContas;
+			cout << "Quantidade de atributos: " << endl;
+			cin  >> qtdAtributos;
 			
-			for (int j = 0; j < qtdContas; j++) {
-				int num;
-				string numero;
-				float saldo; 
-				cout << "Para selecionar Conta Corrente, pressione 1, para Conta Poupanca, pressione 2:" << endl;
-				cin >> num;
+			for (int j = 0; j < qtdAtributos; j++) {
+				int select;
+				float valor; 
+				cout << "Para selecionar Forca, pressione 1, para Inteligencia, pressione 2:" << endl;
+				cin >> select;
 				
-				if (num == 1) {
-    				cout << "Entre com o numero da "<< j + 1 <<"ª conta do "<< i + 1 <<"° cliente" << endl;
-    				cin >> numero;	
-    			
-    				cout << "Entre com o saldo da "<< j + 1 <<"ª conta do "<< i + 1 <<"° cliente" << endl;
-    				cin >> saldo;
+				if (select == 1) {
+    				cout << "Entre com o valor do atributo "<< j + 1 <<" do "<< i + 1 <<"° campeao" << endl;
+    				cin >> valor;
     					
-    				ContaCorrente contaCorrente;
-    				contaCorrente.setNumero(numero);
-    				contaCorrente.setSaldo(saldo);	
+    				AtributoForca atributoForca;
+    				atributoForca.setValor(valor);	
     					
-    				cadastroDeContas.push_back(contaCorrente);
+    				cadastroDeAtributos.push_back(atributoForca);
     			}
     				
 				else {
-    				cout << "Entre com o numero da "<< j + 1 <<"ª conta do "<< i + 1 <<"° cliente" << endl;
-    				cin >> numero;	
-    			
-    				cout << "Entre com o saldo da "<< j + 1 <<"ª conta do "<< i + 1 <<"° cliente" << endl;
-    				cin >> saldo;
+    				cout << "Entre com o valor do atributo "<< j + 1 <<" do "<< i + 1 <<"° campeao" << endl;
+    				cin >> valor;
     					
-    				ContaPoupanca contaPoupanca;
-    				contaPoupanca.setNumero(numero);
-    				contaPoupanca.setSaldo(saldo);
+    				AtributoInteligencia atributoInteligencia;
+    				atributoInteligencia.setValor(valor);	
     					
-    				cadastroDeContas.push_back(contaPoupanca);
+    				cadastroDeAtributos.push_back(atributoInteligencia);
     			}
 			}
 	    }
 	    
-apresentaCadastro(cadastroDeClientes, cadastroDeContas);
+apresentaCadastro(cadastroDeCampeoes, cadastroDeAtributos);
 return 0;
 
 }
