@@ -31,9 +31,7 @@ public:
 	float getValor(){
 		return this->valor;
 	}
-	
-	virtual float determinarValor(){
-	}	
+
 };
 
 class AtributoForca: public Atributo{
@@ -43,10 +41,7 @@ public:
 	AtributoForca(){
 		cout<<"Criando atributo forca para o personagem, no endereço "<<this<<endl;
 	}
-	
-	float determinaValor(){
-		
-	}
+
 };
 class AtributoInteligencia: public Atributo{
 	//Sobrescrita de mÃ½todo
@@ -55,10 +50,7 @@ public:
 	AtributoInteligencia(){
 		cout<<"Criando atributo inteligencia para o personagem, no endereço "<<this<<endl;
 	}
-	
-	float determinaValor(){
-		
-	}
+
 };
 
 class AtributoVida: public Atributo{
@@ -66,12 +58,9 @@ class AtributoVida: public Atributo{
 	
 public:
 	AtributoVida(){
-		cout<<"Criando atributo inteligencia para o personagem, no endereço "<<this<<endl;
+		cout<<"Criando atributo vida para o personagem, no endereço "<<this<<endl;
 	}
-	
-	float determinaValor(){
-		
-	}
+
 };
 
 
@@ -103,30 +92,6 @@ public:
 	
 };
 
-
-/*class GerenciaDeContas{
-/*	Tem um atributo custos, que acumula os custos
-	de manutenção de todas as contas do programa.
-*/
-/*private:
-	float custos;
-	
-public:
-	
-	GerenciaDeContas(){
-		this->custos = 0;
-	}
-	
-	float somaCusto(Conta* conta){
-		this->custos += conta->calculaCusto();	
-	}
-	
-	float getCustos(){
-		return custos;
-	}
-};*/
-
-
 void apresentaCadastro(vector<Campeao> cadastroDeCampeoes, vector<Atributo> cadastroDeAtributos){
 	
 	for(int i = 0; i < cadastroDeCampeoes.size(); i++){
@@ -136,27 +101,27 @@ void apresentaCadastro(vector<Campeao> cadastroDeCampeoes, vector<Atributo> cada
 	}
 	
 	for(int j = 0; j < cadastroDeAtributos.size(); j++){
-	    cout<<"Valor do atributo: "<<cadastroDeAtributos[j].getValor()<<endl;
+	    cout<<"Valor do atributo "<< cadastroDeAtributos[j].getNomeAtributo() << ": "<<cadastroDeAtributos[j].getValor()<<endl;
 		cout<<endl;
 	    }
 	
 }
 
 int main(){
-
-	int qtdCampeoes, qtdAtributos;
+    
+    
+	int qtdCampeoes, qtdAtributos, resposta, resposta2;
 	vector<Campeao> cadastroDeCampeoes;
 	vector<Atributo> cadastroDeAtributos;
 
-	cout << "Quantidade de Campeos: "<< endl;
+	cout << "Quantidade de Campeoes: "<< endl;
 	cin  >> qtdCampeoes;
 
 		for(int i = 0; i < qtdCampeoes; i++){
 			string nomeCampeao;
 			
-			cout << "Entre com o nome do campeao "<< i + 1 << endl;
+			cout << "Entre com o nome do campeao "<< i + 1 << ": " << endl;
 			cin >> nomeCampeao;	
-			
 			
 			Campeao campeao;
 			campeao.setNomeCampeao(nomeCampeao);
@@ -169,35 +134,96 @@ int main(){
 			for (int j = 0; j < qtdAtributos; j++) {
 				int select;
 				float valor; 
-				cout << "Para selecionar Forca, pressione 1, para Inteligencia, pressione 2:" << endl;
+				cout << "Para selecionar Forca, pressione 1, para Inteligencia, pressione 2 e para Vida, pressione 3:" << endl;
 				cin >> select;
 				
 				if (select == 1) {
-    				cout << "Entre com o valor do atributo "<< j + 1 <<" do "<< i + 1 <<"° campeao" << endl;
+    				cout << "Entre com o valor do atributo "<< j + 1 <<" do "<< i + 1 <<" campeao" << endl;
     				cin >> valor;
     					
     				AtributoForca atributoForca;
-    				atributoForca.setValor(valor);	
+    				atributoForca.setValor(valor);
+    				atributoForca.setNomeAtributo("Forca");
     					
     				cadastroDeAtributos.push_back(atributoForca);
     			}
     				
-				else {
-    				cout << "Entre com o valor do atributo "<< j + 1 <<" do "<< i + 1 <<"° campeao" << endl;
+				if (select == 2) {
+    				cout << "Entre com o valor do atributo "<< j + 1 <<" do "<< i + 1 <<" campeao" << endl;
     				cin >> valor;
     					
     				AtributoInteligencia atributoInteligencia;
-    				atributoInteligencia.setValor(valor);	
+    				atributoInteligencia.setValor(valor);
+    				atributoInteligencia.setNomeAtributo("Inteligencia");
     					
     				cadastroDeAtributos.push_back(atributoInteligencia);
     			}
+    			
+    			if (select == 3) {
+    			    cout << "Entre com o valor do atributo "<< j + 1 <<" do "<< i + 1 <<" campeao" << endl;
+    				cin >> valor;
+    					
+    				AtributoVida atributoVida;
+    				atributoVida.setValor(valor);
+    				atributoVida.setNomeAtributo("Vida");
+    					
+    				cadastroDeAtributos.push_back(atributoVida);
+    			}
+    		
 			}
 	    }
 	    
 apresentaCadastro(cadastroDeCampeoes, cadastroDeAtributos);
-return 0;
 
+
+    cout << "Deseja editar algum parametro dos personagens? \n\n(1) Sim\n(2) Nao\n" << endl;
+    cin >> resposta;
+    
+    switch (resposta) {
+
+        case 1:
+        {
+            string nome;
+        	cout<<endl<<"----EDITANDO----"<<endl;
+        	cout<<endl<<"\nO que voce deseja alterar?\n\n(1) Nome\n"<<endl;
+        	cin >> resposta2;
+        	
+        	switch (resposta2) {
+        	    
+        	    case 1:
+        	    {
+                	cout<<"Que nome voce quer alterar?: ";
+                	cin>>nome;
+                	
+                	int contador = 0;
+                	while(contador < cadastroDeCampeoes.size()){
+                		
+                		if(cadastroDeCampeoes[contador].getNomeCampeao()==nome){
+                			string novoNome;
+                			cout<<"Digite o novo nome: "<<endl;
+                			cin>>novoNome;
+                			
+                			cadastroDeCampeoes[contador].setNomeCampeao(novoNome);
+                		}
+                		
+                		contador++;
+                	}
+                	
+                	apresentaCadastro(cadastroDeCampeoes, cadastroDeAtributos);
+                }
+        	}
+        }
+        
+        case 2:
+        {
+            cout << "Terminando codigo!" <<endl;
+            apresentaCadastro(cadastroDeCampeoes, cadastroDeAtributos);
+        }
+    }
+
+return 0;
 }
+
 
 
 
