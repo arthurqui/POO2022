@@ -9,12 +9,13 @@ uma herança, itens que serão agregações e a mudança de valores serão o polimorfi
 
 using namespace std;
 
-class Atributo {
+//Classe
+class Atributo{
 
 protected:
 	string nomeAtributo;
 	float valor;
-		
+
 public:
 	void setNomeAtributo(string nomeAtributo){
 		this->nomeAtributo = nomeAtributo;
@@ -31,46 +32,51 @@ public:
 	float getValor(){
 		return this->valor;
 	}
+	//Polimorfismo
+	virtual void criaAtributo(){
 
+	}
 };
 
+//Subclasse
 class AtributoForca: public Atributo{
-	//Sobrescrita de mÃ½todo
 
 public:
-	AtributoForca(){
+	//Polimorfismo
+	void criaAtributo(){
 		cout<<"Criando atributo forca para o personagem, no endereço "<<this<<endl;
 	}
 
 };
+
+//Subclasse
 class AtributoInteligencia: public Atributo{
-	//Sobrescrita de mÃ½todo
-	
+
 public:
-	AtributoInteligencia(){
+	//Polimorfismo
+	void criaAtributo(){
 		cout<<"Criando atributo inteligencia para o personagem, no endereço "<<this<<endl;
 	}
 
 };
 
+//Subclasse
 class AtributoVida: public Atributo{
-	//Sobrescrita de mÃ½todo
-	
+
 public:
-	AtributoVida(){
+	//Polimorfismo
+	void criaAtributo(){
 		cout<<"Criando atributo vida para o personagem, no endereço "<<this<<endl;
 	}
 
 };
 
-
-
-
-class Campeao {
+//Classe
+class Campeao{
 
 private:
 	string nomeCampeao;
-	Atributo* atributo;
+	Atributo atributo;
 		
 public:
 	
@@ -82,33 +88,40 @@ public:
 		return this->nomeCampeao;
 	}
 	
-	void setAtributo(Atributo* atributo){
+	void setAtributo(Atributo atributo){
 		this->atributo = atributo;
 	}
-	
-	Atributo* getAtributo(){
+
+	Atributo getAtributo(){
 		return this->atributo;
 	}
-	
+
 };
 
+//Apresentação de Dados
 void apresentaCadastro(vector<Campeao> cadastroDeCampeoes, vector<Atributo> cadastroDeAtributos){
-	
+
 	for(int i = 0; i < cadastroDeCampeoes.size(); i++){
-		cout<<"Nome do campeao: "<<cadastroDeCampeoes[i].getNomeCampeao()<<endl;
+		cout<< "Nome do campeao: "<<cadastroDeCampeoes[i].getNomeCampeao()<<endl;
 		cout<<endl;
 		
 	}
 	
 	for(int j = 0; j < cadastroDeAtributos.size(); j++){
-	    cout<<"Valor do atributo "<< cadastroDeAtributos[j].getNomeAtributo() << ": "<<cadastroDeAtributos[j].getValor()<<endl;
+	    cout<< "Valor do atributo "<< cadastroDeAtributos[j].getNomeAtributo() << ": "<<cadastroDeAtributos[j].getValor()<<endl;
 		cout<<endl;
 	    }
-	
+}
+
+//Apresentação de Dados
+void apresentaNome(vector<Campeao> cadastroDeCampeoes){
+	for(int i = 0; i < cadastroDeCampeoes.size(); i++){
+		cout<< "Nome do campeao: "<<cadastroDeCampeoes[i].getNomeCampeao()<<endl;
+		cout<<endl;
+	}
 }
 
 int main(){
-    
     
 	int qtdCampeoes, qtdAtributos, resposta, resposta2;
 	vector<Campeao> cadastroDeCampeoes;
@@ -120,53 +133,66 @@ int main(){
 		for(int i = 0; i < qtdCampeoes; i++){
 			string nomeCampeao;
 			
-			cout << "Entre com o nome do campeao "<< i + 1 << ": " << endl;
+			cout << "\nEntre com o nome do campeao "<< i + 1 << ": " << endl;
 			cin >> nomeCampeao;	
 			
+			//Criação de Objeto
 			Campeao campeao;
 			campeao.setNomeCampeao(nomeCampeao);
 			
 			cadastroDeCampeoes.push_back(campeao);	
 				
-			cout << "Quantidade de atributos: " << endl;
-			cin  >> qtdAtributos;
-			
-			for (int j = 0; j < qtdAtributos; j++) {
-				int select;
+			for (int j = 0; j < 3; j++) {
 				float valor; 
-				cout << "Para selecionar Forca, pressione 1, para Inteligencia, pressione 2 e para Vida, pressione 3:" << endl;
-				cin >> select;
 				
-				if (select == 1) {
-    				cout << "Entre com o valor do atributo "<< j + 1 <<" do "<< i + 1 <<" campeao" << endl;
+				if (j == 0) {
+    				cout << "\nEntre com o valor do atributo Forca de "<< campeao.getNomeCampeao() << endl;
     				cin >> valor;
-    					
+    				
     				AtributoForca atributoForca;
+								
     				atributoForca.setValor(valor);
     				atributoForca.setNomeAtributo("Forca");
-    					
+    				atributoForca.criaAtributo();
+    				
+    				campeao.setAtributo(atributoForca);
+    				//Agregação
+    				cout << "Forca: " << campeao.getAtributo().getValor() << endl;
+
     				cadastroDeAtributos.push_back(atributoForca);
     			}
     				
-				if (select == 2) {
-    				cout << "Entre com o valor do atributo "<< j + 1 <<" do "<< i + 1 <<" campeao" << endl;
+				if (j == 1) {
+    				cout << "\nEntre com o valor do atributo Inteligencia de "<< campeao.getNomeCampeao() << endl;
     				cin >> valor;
     					
-    				AtributoInteligencia atributoInteligencia;
+    				AtributoForca atributoInteligencia;
+								
     				atributoInteligencia.setValor(valor);
     				atributoInteligencia.setNomeAtributo("Inteligencia");
+    				atributoInteligencia.criaAtributo();
+    				
+    				campeao.setAtributo(atributoInteligencia);
+    				//Agregação
+    				cout << "Inteligencia: " << campeao.getAtributo().getValor() << endl;
     					
     				cadastroDeAtributos.push_back(atributoInteligencia);
     			}
     			
-    			if (select == 3) {
-    			    cout << "Entre com o valor do atributo "<< j + 1 <<" do "<< i + 1 <<" campeao" << endl;
+    			if (j == 2) {
+    			    cout << "\nEntre com o valor do atributo Vida de "<< campeao.getNomeCampeao() << endl;
     				cin >> valor;
     					
-    				AtributoVida atributoVida;
+    				AtributoForca atributoVida;
+								
     				atributoVida.setValor(valor);
     				atributoVida.setNomeAtributo("Vida");
-    					
+    				atributoVida.criaAtributo();
+    				
+    				campeao.setAtributo(atributoVida);
+    				//Agregação
+    				cout << "Vida: " << campeao.getAtributo().getValor() << endl;
+    				
     				cadastroDeAtributos.push_back(atributoVida);
     			}
     		
@@ -176,6 +202,7 @@ int main(){
 apresentaCadastro(cadastroDeCampeoes, cadastroDeAtributos);
 
 
+	//Edição de Objeto
     cout << "Deseja editar algum parametro dos personagens? \n\n(1) Sim\n(2) Nao\n" << endl;
     cin >> resposta;
     
@@ -192,7 +219,7 @@ apresentaCadastro(cadastroDeCampeoes, cadastroDeAtributos);
         	    
         	    case 1:
         	    {
-                	cout<<"Que nome voce quer alterar?: ";
+                	cout<<"Que nome voce quer alterar?: "<<endl;
                 	cin>>nome;
                 	
                 	int contador = 0;
@@ -209,7 +236,8 @@ apresentaCadastro(cadastroDeCampeoes, cadastroDeAtributos);
                 		contador++;
                 	}
                 	
-                	apresentaCadastro(cadastroDeCampeoes, cadastroDeAtributos);
+                	apresentaNome(cadastroDeCampeoes);
+                	break;
                 }
         	}
         }
@@ -218,7 +246,13 @@ apresentaCadastro(cadastroDeCampeoes, cadastroDeAtributos);
         {
             cout << "Terminando codigo!" <<endl;
             apresentaCadastro(cadastroDeCampeoes, cadastroDeAtributos);
+            break;
         }
+        
+        default:
+        {
+        	cout << "Digita um numero porra" << endl;
+		}
     }
 
 return 0;
