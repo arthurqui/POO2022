@@ -269,6 +269,7 @@ do {
     			cout<<endl<<"----EDITANDO----"<<endl;
         	cout<<endl<<"1 - Ver lista de nomes"<<endl;
         	cout<<endl<<"2 - Alterar nome"<<endl;
+        	cout<<endl<<"3 - Voltar"<<endl;
         	cin >> resposta;
 	    			if (cin.fail()) 
 					{
@@ -329,7 +330,8 @@ do {
                 
                 default:
         		{
-        			cout << "Digita um numero" << endl;
+        			contadorMenu2 = 3;
+        			break;
 				}
         	}
         
